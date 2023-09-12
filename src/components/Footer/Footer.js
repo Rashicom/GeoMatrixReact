@@ -9,7 +9,7 @@ import { BsFacebook, BsInstagram, BsLinkedin,BsGithub } from "react-icons/bs";
 
 function Footer() {
   return (
-    <div className='bg-primary fixed-bottom'>
+    <div className='bg-primary'>
       <Container className='p-4'>
         <Row>
           <Col className='text-center'><h6>ABOUT GEOMATRIX</h6></Col>

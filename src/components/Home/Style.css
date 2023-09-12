@@ -1,0 +1,39 @@
+.home-banner{
+    background-image: url('../../Assets/Images/homewall.jpg');
+    background-size: cover;
+}
+.banner-colorwrap{
+    background-color: rgb(0, 0, 0, 0.4);
+    height: inherit;
+}
+
+
+h1,h6{
+    color:white;
+}
+
+
+/* aliece caroucel slider */
+.carousel-slider{
+    height: 200px;
+    background-image: url('../../Assets/Images/croucel-slider.png');
+    background-size: cover;
+}
+
+/* aliece caroucel slider inner div */
+.carousal-colorwrap{
+    color: rgb(41, 41, 41);
+    
+}
+
+
+/* section section main div */
+.home-secondsection{
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+/* section section main div side image */
+.secondsection_img{
+    width: 25rem;
+
+}

@@ -7,7 +7,7 @@ function Navigationbar() {
   return (
     <>
 
-      <Navbar bg="primary" data-bs-theme="dark">
+      <Navbar bg="primary" data-bs-theme="dark" className='sticky-top'>
         <Container>
           <Navbar.Brand href="#home">Geo Matrix</Navbar.Brand>
           <Nav className="me-auto">
