@@ -79,6 +79,7 @@ function Home() {
         {/* second section */}
 
         <div className='home-secondsection py-4'>
+
           <Container>
             <Row>
               <Col>
@@ -91,9 +92,94 @@ function Home() {
                 <img className='secondsection_img' src={second_section_image} alt="sectionimage" />
               </Col>
             </Row>
-            
           </Container>
+
         </div>
+
+        {/* third section */}
+
+        <div className='home-thirdsection'>
+
+          <div className='home-thirdsection-colorwrap'>
+            <Container>
+
+              <Row className='py-4'>
+                <Col md={6}>
+                  <h3 className='my-2'>We are providing better solution for solving new problems</h3>
+                  
+                  <p>GeoMatrix revolutionized the earth observation industry with the highest frequency satellite data commercially available.</p>
+                  
+                  <Button className='mt-3' variant="outline-primary">INSIGHTS TO DATA </Button>
+                </Col>
+              </Row>
+
+              <Row className='pt-5'>
+                <Col md={4} className='text-center'>
+                  <h5>Public Sector</h5>
+                  <hr />
+                  <p>GeoMatrix provides instant access to land ownership, property details, and environmental data. Stay prepared with real-time weather alerts and keep up with town planning and infrastructure developments in your area, empowering you to engage in your community's growth.</p>
+                </Col>
+                <Col md ={4} className='text-center'>
+                  <h5>Government Sector</h5>
+                  <hr />
+                  <p>Efficiently manage cadastral records, make informed decisions with town planning tools, and respond effectively to disasters using real-time weather data. Access up-to-date land and environmental information to support policy implementation and governance.</p>
+                </Col>
+                <Col md={4} className='text-center'>
+                  <h5>Business Sector</h5>
+                  <hr />
+                  <p>Access comprehensive land and property data for market research, identify investment opportunities in infrastructure development, and make well-informed real estate and logistics decisions. Ensure environmental compliance and sustainability, contributing to responsible business practices.</p>
+                </Col>
+              </Row>
+
+            </Container>
+          </div>
+          
+
+        </div>
+
+        {/* fourth section */}
+        <div className='home-fourthsection'>
+          <div className='home-fourthsection-colorwrap py-4'>
+
+            <Container>
+
+              <Row>
+                <Col>
+                  <h3>Service for next Gen</h3>
+                  <p>In our commitment to sustainability and future generations, we are dedicated to providing innovative services that harness data-driven insights for responsible decision-making, fostering a more informed, resilient, and equitable world.</p>
+                  <Button variant="outline-primary">SUGN IN TO GEOMATRIX</Button>
+                </Col>
+
+                <Col className='d-flex justify-content-end'>
+                  <img className='secondsection_img' src={second_section_image} alt="sectionimage" />
+                </Col>
+              </Row>
+
+              <Row className='pt-5'>
+                  <Col md={4} className='text-center'>
+                    <h5>Empowering Land Management</h5>
+                    <hr />
+                    <p>Our Cadastral Mapping Service revolutionizes land management by delivering precise and up-to-date cadastral maps. Harness the power of accurate land information to make informed decisions, enhance land administration, and ensure sustainable development.</p>
+                  </Col>
+                  <Col md ={4} className='text-center'>
+                    <h5>Innovative Land Solutions</h5>
+                    <hr />
+                    <p>Our Land-Based Services provide a comprehensive range of solutions for efficient land use planning, infrastructure development, and environmental management. We offer data-driven tools and insights to optimize land resources, supporting responsible growth and urban development.</p>
+                  </Col>
+                  <Col md={4} className='text-center'>
+                    <h5>Data-Driven Decision Support</h5>
+                    <hr />
+                    <p>Our Generated Insights service leverages cutting-edge data analytics to deliver actionable intelligence. Gain valuable insights into land-related trends, weather alerts, and environmental patterns. Use this information to make informed decisions, mitigate risks, and drive positive change for future generations.</p>
+                  </Col>
+                </Row>
+                
+              </Container>
+
+          </div>
+          
+
+        </div>
+
     </>
   )
 }

@@ -2,6 +2,8 @@
     background-image: url('../../Assets/Images/homewall.jpg');
     background-size: cover;
 }
+
+
 .banner-colorwrap{
     background-color: rgb(0, 0, 0, 0.4);
     height: inherit;
@@ -20,6 +22,7 @@ h1,h6{
     background-size: cover;
 }
 
+
 /* aliece caroucel slider inner div */
 .carousal-colorwrap{
     color: rgb(41, 41, 41);
@@ -32,8 +35,31 @@ h1,h6{
     background-color: rgb(0, 0, 0, 0.1);
 }
 
+
 /* section section main div side image */
 .secondsection_img{
     width: 25rem;
 
+}
+
+
+
+/* third section main div */
+.home-thirdsection{
+    background-image: url('../../Assets/Images/thirdsection.jpg');
+    background-size: cover;
+    color: white;
+}
+
+/* color wrap for third section */
+.home-thirdsection-colorwrap{
+    background-color: rgb(0, 0, 0, 0.3);
+    height: inherit;
+}
+
+
+/* fourth section */
+.home-fourthsection-colorwrap{
+    background-color: rgb(0, 0, 0, 0.1);
+    
 }
