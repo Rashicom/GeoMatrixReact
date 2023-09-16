@@ -1,0 +1,10 @@
+.loginmain-div{
+    background-image: url('../../../Assets/Images/loginwall.webp');
+    background-size: cover;
+
+}
+
+.login-colorwrap{
+    background-color: rgb(0, 0, 0, 0.2);
+    
+}

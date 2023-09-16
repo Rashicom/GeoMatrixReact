@@ -1,0 +1,27 @@
+/* login main div */
+
+
+.loginmain-div{
+    background-image: url('../../../Assets/Images/loginwall.webp');
+    background-size: cover;
+
+}
+
+.login-colorwrap{
+    background-color: rgb(0, 0, 0, 0.2);
+    
+}
+
+
+
+/* admin login section */
+.adminsection{
+    background-image: url('../../../Assets/Images/thirdsection.jpg');
+    background-size: cover;
+    color: white;
+}
+
+.adminsection-colorwrap{
+    background-color: rgb(0, 0, 0, 0.3);
+    height: inherit;
+}

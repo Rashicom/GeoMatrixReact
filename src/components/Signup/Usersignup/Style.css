@@ -1,0 +1,11 @@
+.signupmain-div{
+    background-image: url('../../../Assets/Images/loginwall.webp');
+    background-size: cover;
+
+}
+
+
+.signup-colorwrap{
+    background-color: rgb(0, 0, 0, 0.2);
+    
+}
