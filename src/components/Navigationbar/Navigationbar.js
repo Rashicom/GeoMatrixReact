@@ -2,6 +2,8 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
+
 
 function Navigationbar() {
   return (
@@ -9,12 +11,14 @@ function Navigationbar() {
 
       <Navbar bg="primary" data-bs-theme="dark" className='sticky-top'>
         <Container>
-          <Navbar.Brand href="#home">Geo Matrix</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">Geo Matrix</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#datalab">Data Lab</Nav.Link>
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/datalab">Data Lab</Nav.Link>
             <Nav.Link href="#blogs">Blogs</Nav.Link>
-            <Nav.Link href="#login">Login</Nav.Link>
+            
+            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            
 
           </Nav>
         </Container>

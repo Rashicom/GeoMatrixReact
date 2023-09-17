@@ -7,15 +7,16 @@ import Userlogin from '../components/Login/Userlogin/Userlogin'
 import Navigationbar from '../components/Navigationbar/Navigationbar'
 
 
-function Userloginpage() {
+function Loginpage() {
   return (
     <>
         <Navigationbar />
         <Forhead />
         
         <Routes>
-          <Route path='userlogin' element={<Userlogin />} />
-          <Route path='govuserlogin' element={<Govuserlogin />} />
+          <Route path='/' element={<Userlogin />} />
+          <Route path='/govuserlogin' element={<Govuserlogin />} />
+          
         </Routes>
 
         
@@ -24,4 +25,4 @@ function Userloginpage() {
   )
 }
 
-export default Userloginpage
+export default Loginpage

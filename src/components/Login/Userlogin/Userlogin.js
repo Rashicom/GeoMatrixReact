@@ -2,6 +2,7 @@ import React from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './Style.css'
@@ -46,7 +47,9 @@ function Userlogin() {
                                     </Col>
                                     <Col className='d-flex justify-content-end'>
                                         <Form.Text className="text-muted">
-                                            <a href="#forgotpassword">Signup</a>
+                                            
+                                            <Link to="/signup">Signup</Link>
+                                            
                                         </Form.Text>
                                     </Col>
                                 </Row>
@@ -74,7 +77,11 @@ function Userlogin() {
                     <p>Geo Matrix provides you a place to track and coordinates the land activities and land information and provide better service to the people and other organizations. Geo Matrix dashboard gives you a better insights to the data.</p>
                     <hr />
                     <h3 className='my-3'>Login as a Government body</h3>
-                    <Button variant="outline-primary">LOGIN</Button>                  
+
+                    <Link to="govuserlogin">
+                        <Button variant="outline-primary">LOGIN</Button>
+                    </Link>
+                                      
 
                 </Container>
 

@@ -15,8 +15,8 @@ function Signuppage() {
 
             <Routes>
                 
-                <Route path="usersignup" element={<Usersignup />} />
-                <Route path="govsignup" element={<Govsignup />} />
+                <Route path="/" element={<Usersignup />} />
+                <Route path="/govsignup" element={<Govsignup />} />
                 
             </Routes>
             

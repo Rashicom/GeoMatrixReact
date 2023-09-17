@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 
 function Govuserlogin() {
@@ -47,7 +48,7 @@ function Govuserlogin() {
                                     </Col>
                                     <Col className='d-flex justify-content-end'>
                                         <Form.Text className="text-muted">
-                                            <a href="#forgotpassword">Signup</a>
+                                            <Link to="/signup/govsignup">Signup</Link>
                                         </Form.Text>
                                     </Col>
                                 </Row>
