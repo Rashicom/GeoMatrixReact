@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap'
@@ -8,6 +8,35 @@ import { Link } from 'react-router-dom';
 
 
 function Govuserlogin() {
+
+    const [govlogininfo,setGovlogininfo] = useState({email:"",password:""})
+    
+    // validation state
+    const [validated, setValidated] = useState(false);
+   
+    const govloginHandler = (event)=>{
+        /*
+        this handle the signup . 
+        */
+        let email = govlogininfo.email
+        let password = govlogininfo.password
+        
+        // privent default behaviour
+        event.preventDefault()
+        event.stopPropagation()
+
+        // setvalidate trigger all the validation methods
+        setValidated(true);
+        
+        // geting form element and check validation
+        const form = event.currentTarget;
+        if (form.checkValidity() === true){
+            console.log("procede for api call")
+
+        }
+    }
+
+
   return (
     <>
     
@@ -27,18 +56,20 @@ function Govuserlogin() {
                         <hr />
                         <Row>
                             
-                            <Form>
+                            <Form noValidate validated={validated} onSubmit={govloginHandler}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email" />
+                                    <Form.Control type="email" placeholder="Enter email" required onChange={(e)=>{setGovlogininfo({...govlogininfo,"email":e.target.value})}} />
                                     <Form.Text className="text-muted">
                                     We'll never share your email with anyone else.
                                     </Form.Text>
+                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 </Form.Group>
                                 
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password" />
+                                    <Form.Control type="password" placeholder="Password" required onChange={(e)=>{setGovlogininfo({...govlogininfo,"password":e.target.value})}} />
+                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 </Form.Group>
                                 <Row>
                                     <Col>
@@ -53,7 +84,7 @@ function Govuserlogin() {
                                     </Col>
                                 </Row>
                                 <br />
-                                <Button variant="primary" type="submit">
+                                <Button variant="primary" type="submit" >
                                     Submit
                                 </Button>
                             </Form>
