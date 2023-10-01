@@ -5,16 +5,24 @@ import { Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useSelector, useDispatch } from 'react-redux';
+import { login, logout } from '../../../redux/Normaluser/User';
 import './Style.css'
+
 
 function Userlogin() {
 
+    const user = useSelector((state) => state.user)
+    
+    const dispatch = useDispatch()
+    
     // login credencials state
     const [logininfo,setLogininfo] = useState({"email":"","password":""});
 
     // validation state
     const [validated, setValidated] = useState(false);
 
+    
     // signup button action
     const loginHandler = (event)=>{
         // validate and call api
@@ -23,7 +31,7 @@ function Userlogin() {
         
         event.preventDefault()
         event.stopPropagation()
-
+        
         // setvalidate trigger all the validation methods
         setValidated(true)
 
@@ -31,9 +39,17 @@ function Userlogin() {
         const form = event.currentTarget;
         if (form.checkValidity() === true){
             console.log("procede for api call")
+            
+            
+            dispatch(login(logininfo))
+            
+            
+            
         }
         
     }
+
+
 
   return (
     <>

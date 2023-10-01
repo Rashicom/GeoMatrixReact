@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Homepage from "./pages/Homepage";
 import Datalabpage from "./pages/Datalabpage";
 import Signuppage from "./pages/Signuppage";
-
+import { Provider } from 'react-redux';
 
 function App() {
  
