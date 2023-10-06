@@ -1,11 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { loginUser } from "../../Api/users/Users";
+
+const INITIAL_STATE = {}
 
 
-const INITIAL_STATE = {
-    user: "",
-    access:"",
-    refresh:"",
-}
+export const fetchUser = createAsyncThunk("user/fetchuser", (credencials)=> {
+    const response = loginUser(credencials)
+    return response
+    
+})
 
 
 const userSlice = createSlice({
@@ -14,8 +17,7 @@ const userSlice = createSlice({
     reducers:{
 
         login: (state,action) => {
-            state.access = action.payload.email
-            state.refresh = action.payload.password
+            
             console.log(action)
         },
 
@@ -23,6 +25,27 @@ const userSlice = createSlice({
             state.access = ""
             state.refresh = ""
         }
+    },
+    extraReducers:{
+        [fetchUser.pending]: (state,action) => {
+            console.log("pending")
+        },
+
+        [fetchUser.fulfilled]: (state,action) => {
+            console.log("success")
+            state.access = action.payload.access
+            state.refresh = action.payload.refresh
+            state.user = action.payload.email
+        
+        },
+
+        [fetchUser.rejected]: (state,action) => {
+            console.log("rejected")
+            console.log(action.error)
+            state.error = "Invalid password or Email"
+            
+        },
+
     }
 })
 

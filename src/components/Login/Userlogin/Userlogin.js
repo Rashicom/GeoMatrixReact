@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { login, logout } from '../../../redux/Normaluser/User';
+import { fetchUser, login, logout } from '../../../redux/Normaluser/User';
 import './Style.css'
 
 
@@ -25,9 +25,6 @@ function Userlogin() {
     
     // signup button action
     const loginHandler = (event)=>{
-        // validate and call api
-        let email = logininfo.email
-        let password = logininfo.password
         
         event.preventDefault()
         event.stopPropagation()
@@ -39,16 +36,11 @@ function Userlogin() {
         const form = event.currentTarget;
         if (form.checkValidity() === true){
             console.log("procede for api call")
-            
-            
-            dispatch(login(logininfo))
-            
-            
-            
-        }
+            const credencials = {"email":logininfo.email,"password":logininfo.password}   
+            dispatch(fetchUser(credencials))
         
+        }
     }
-
 
 
   return (
@@ -66,6 +58,7 @@ function Userlogin() {
                     <Col md={6} className='login-colorwrap p-3'>
 
                         <h3 className='p'>Login</h3>
+                        <p className='error'>{user.error}</p>
                         <hr />
                         <Row>
                             
