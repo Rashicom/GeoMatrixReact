@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUser, login, logout } from '../../../redux/Normaluser/User';
+import { setUser, setLoading, setError, logout } from '../../../redux/Normaluser/User';
 import './Style.css'
+import { loginUser } from '../../../Api/users/Users';
 
 
 function Userlogin() {
@@ -21,10 +22,9 @@ function Userlogin() {
 
     // validation state
     const [validated, setValidated] = useState(false);
-
     
     // signup button action
-    const loginHandler = (event)=>{
+    const loginHandler = async (event)=>{
         
         event.preventDefault()
         event.stopPropagation()
@@ -35,9 +35,32 @@ function Userlogin() {
         // geting form element and check validation
         const form = event.currentTarget;
         if (form.checkValidity() === true){
+
             console.log("procede for api call")
             const credencials = {"email":logininfo.email,"password":logininfo.password}   
-            dispatch(fetchUser(credencials))
+            
+            // calling login api
+            let response
+            try {
+
+                //dispatch loading status
+                dispatch(setLoading(true))
+
+                // call api
+                response = await loginUser(credencials)
+                
+                //dispatching if successful, else control transfer to catch
+                dispatch(setLoading(false))
+                dispatch(setUser(response)) 
+                
+          
+            }
+            catch (error) {
+                dispatch(setLoading(false))
+                console.log(error.data)
+                dispatch(setError(error.data.details))
+            }
+            
         
         }
     }

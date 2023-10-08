@@ -10,20 +10,27 @@ const userapiInstance = axios.create({
     
 })
 
-
+// normal user login
 export const loginUser = async (credencials)=> {
-    
     try{
         const responce = await userapiInstance.post('/login/', credencials)
         return responce.data
     }
     catch(error) {
-        if(error.response.status == 401){
-            throw error;
-        }
+        throw error.response
     }
-   
-    
-}   
+}
+
+
+// gov user login
+export const loginGovuser = async (credencials)=> {
+    try{
+        const responce = await userapiInstance.post('/gov_login/', credencials)
+        return responce.data
+    }
+    catch(error) {
+        throw error.response
+    }
+}  
 
 

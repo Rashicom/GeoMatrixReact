@@ -1,11 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./Normaluser/User"
+import govuserReducer from "./govuser/govuser"
 
-export const user = configureStore({
+
+
+export const store = configureStore({
     reducer: {
-        user: userReducer,   
+        user: userReducer,
+        govuser: govuserReducer,
+
     },
 
 })
+
 
 

@@ -5,7 +5,9 @@ import { Container } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setGovuser,setLoading,logout,setError } from '../../../redux/govuser/govuser';
+import { loginGovuser } from '../../../Api/users/Users';
 
 function Govuserlogin() {
 
@@ -13,8 +15,11 @@ function Govuserlogin() {
     
     // validation state
     const [validated, setValidated] = useState(false);
+
+    const govuser = useSelector((state)=>state.govuser)
+    const dispatch = useDispatch()
    
-    const govloginHandler = (event)=>{
+    const govloginHandler = async (event)=>{
         /*
         this handle the signup . 
         */
@@ -32,6 +37,23 @@ function Govuserlogin() {
         const form = event.currentTarget;
         if (form.checkValidity() === true){
             console.log("procede for api call")
+            
+            // set loading
+            dispatch(setLoading(true))
+
+            //call api
+            const creadencials = {"email":email, "password":password}
+            try {
+                const response = await loginGovuser(creadencials)
+                dispatch(setGovuser(response))
+                dispatch(setLoading(false))
+            }
+            catch (error) {
+                dispatch(setLoading(false))
+                dispatch(setError(error.data.details))
+            }
+
+
 
         }
     }
@@ -53,6 +75,7 @@ function Govuserlogin() {
                     <Col md={6} className='login-colorwrap p-3'>
 
                         <h3 className='p'>Login</h3>
+                        <p className='error'>{govuser.error}</p>
                         <hr />
                         <Row>
                             
