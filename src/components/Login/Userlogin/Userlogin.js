@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,12 +11,14 @@ import './Style.css'
 import { loginUser } from '../../../Api/users/Users';
 
 
+
+
 function Userlogin() {
 
     const user = useSelector((state) => state.user)
-    
     const dispatch = useDispatch()
-    
+    const navigate = useNavigate()
+
     // login credencials state
     const [logininfo,setLogininfo] = useState({"email":"","password":""});
 
@@ -31,7 +33,7 @@ function Userlogin() {
         
         // setvalidate trigger all the validation methods
         setValidated(true)
-
+        
         // geting form element and check validation
         const form = event.currentTarget;
         if (form.checkValidity() === true){
@@ -51,21 +53,22 @@ function Userlogin() {
                 
                 //dispatching if successful, else control transfer to catch
                 dispatch(setLoading(false))
-                dispatch(setUser(response)) 
-                
-          
+                dispatch(setUser(response))
+
+                // navigate to home page if user is loged in
+                navigate('/userprofile/dashboard/')
             }
+
             catch (error) {
                 dispatch(setLoading(false))
                 console.log(error.data)
                 dispatch(setError(error.data.details))
             }
-            
-        
         }
     }
 
 
+    
   return (
     <>
         <div className='loginmain-div'>

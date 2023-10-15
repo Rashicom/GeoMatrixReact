@@ -11,7 +11,7 @@ function Signuppage() {
   return (
     <> 
             <Navigationbar />
-            <Forhead />
+            <Forhead forhead_name="Login" />
 
             <Routes>
                 

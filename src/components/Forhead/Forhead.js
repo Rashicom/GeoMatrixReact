@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap'
 import './Style.css'
 
-function Forhead() {
+function Forhead(props) {
   return (
     <div className='forhead-banner'>
         <div className='forhead-colorwraper'>
@@ -12,7 +12,7 @@ function Forhead() {
                 <Row>
 
                     <Col className='py-4'>
-                        <h5>Geo Matrix | passed props</h5>
+                        <h5>Geo Matrix | {props.forhead_name}</h5>
                     </Col>
                     
                 </Row>

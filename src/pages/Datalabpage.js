@@ -10,7 +10,7 @@ function Datalabpage() {
 
     <>
         <Navigationbar/>
-        <Forhead />
+        <Forhead forhead_name="Data Lab" />
         <Subnavbar />
 
         <Datalabhome />

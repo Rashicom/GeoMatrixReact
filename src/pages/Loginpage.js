@@ -11,7 +11,7 @@ function Loginpage() {
   return (
     <>
         <Navigationbar />
-        <Forhead />
+        <Forhead forhead_name="Login" />
         
         <Routes>
           <Route path='/' element={<Userlogin />} />

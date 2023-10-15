@@ -1,0 +1,6 @@
+const baseURL = 'http://127.0.0.1:8000/'
+
+export const userURL = baseURL+'users/'
+export const cadastreURL = baseURL+'cadastre/'
+export const datalabURL = baseURL+'datalab/'
+export const blogURL = baseURL+'blog/'

@@ -7,6 +7,7 @@ import Homepage from "./pages/Homepage";
 import Datalabpage from "./pages/Datalabpage";
 import Signuppage from "./pages/Signuppage";
 import { Provider } from 'react-redux';
+import Userprofilepage from './pages/Userprofilepage';
 
 function App() {
  
@@ -21,7 +22,8 @@ function App() {
             <Route path='/login/*' element={<Loginpage />} />
             <Route path='/datalab/*' element={<Datalabpage />} />
             <Route path='/signup/*' element={<Signuppage />} />
-
+            <Route path='/userprofile/*' element={<Userprofilepage />} />
+            
           </Routes>
           
 

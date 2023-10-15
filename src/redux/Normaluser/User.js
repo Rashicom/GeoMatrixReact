@@ -23,7 +23,7 @@ const userSlice = createSlice({
         },
 
         setError: (state,action) => {
-            state.user = action.payload
+            state.error = action.payload
         },
 
         logout: (state,action) => {
