@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 
 const INITIAL_STATE = {
-    cadastre:null,
+    
     loading:null,
     error:null
 }

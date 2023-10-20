@@ -1,25 +1,22 @@
 import axios, { Axios } from "axios";
+import { cadastreaxiosInstance } from "../../Interceptors/request";
 import { cadastreURL } from "../Constants";
 
+// import initialized api from interceptor
 
-// create instance
+
 const cadastreInstance = axios.create({
-    baseURL: cadastreURL,
-    headers: {
-        'Content-Type' : 'application/json',
-
-    },
+    baseURL:cadastreURL,   
 })
-
 
 // fetch users cadastre list
 export const fetchcadastreList = async ()=> {
     try {
-        const response = await cadastreInstance.get('/get_user_land')
+        const response = await cadastreaxiosInstance.get('/get_user_land/')
         return response.data
     }
     catch (error) {
-        throw error.response
+        throw error
     }
 }
 

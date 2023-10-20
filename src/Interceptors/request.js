@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { blogURL, cadastreURL, datalabURL, userURL } from "./Constants";
 
 // here wedifine axios instance and add a request interceptor
@@ -6,17 +7,57 @@ import { blogURL, cadastreURL, datalabURL, userURL } from "./Constants";
 
 
 // we have to create 4 axios instances for each microservices
-const useraxiosInstance = axios.create({
+export const useraxiosInstance = axios.create({
     baseURL:userURL
 })
-const cadastreaxiosInstance = axios.create({
+export const cadastreaxiosInstance = axios.create({
     baseURL:cadastreURL
 })
-const datalabaxiosInstance = axios.create({
+export const datalabaxiosInstance = axios.create({
     baseURL:datalabURL
 })
-const blogaxiosInstance = axios.create({
+export const blogaxiosInstance = axios.create({
     baseURL:blogURL
 })
 
+
+
+// defining interceptors for adding authentication tocken to the header
+//users
+useraxiosInstance.interceptors.request.use(
+    (config) => {
+        // modify request configuraion here
+        
+        // fetching access tocken from the redux
+        const accessToken = useSelector((state) => state);
+        if (accessToken) {
+            config.headers['Authorization'] = `Bearer ${accessToken}`;
+        }
+        return config; 
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+)
+
+
+// defining interceptors for adding authentication tocken to the header
+// cadastre
+cadastreaxiosInstance.interceptors.request.use(
+    (config) => {
+        // modify request configuraion here
+        
+        // fetching access tocken from the redux
+        console.log("pre call")
+        const accessToken = localStorage.getItem('accessToken')
+        console.log("post call")
+        if (accessToken) {
+            config.headers['Authorization'] = `Bearer ${accessToken}`;
+        }
+        return config; 
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+)
 

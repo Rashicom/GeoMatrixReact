@@ -55,6 +55,12 @@ function Userlogin() {
                 dispatch(setLoading(false))
                 dispatch(setUser(response))
 
+                // set access and refresh tocken in the local storage
+                let accessToken = response.access
+                let refreshToken = response.access
+                localStorage.setItem('accessToken',accessToken)
+                localStorage.setItem('refreshToken',refreshToken)
+                
                 // navigate to home page if user is loged in
                 navigate('/userprofile/dashboard/')
             }
