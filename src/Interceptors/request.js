@@ -10,16 +10,18 @@ import { blogURL, cadastreURL, datalabURL, userURL } from "./Constants";
 export const useraxiosInstance = axios.create({
     baseURL:userURL
 })
+
 export const cadastreaxiosInstance = axios.create({
     baseURL:cadastreURL
 })
+
 export const datalabaxiosInstance = axios.create({
     baseURL:datalabURL
 })
+
 export const blogaxiosInstance = axios.create({
     baseURL:blogURL
 })
-
 
 
 // defining interceptors for adding authentication tocken to the header

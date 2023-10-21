@@ -1,36 +1,53 @@
 import { useSelector } from 'react-redux';
 import wellknown from 'wellknown';
 
-// returns land cordinates in the lat,log format
-export const get_reversed_cordinates = (cadastre_list)=> {
 
-    // fetching cadastre data from redux and pass to map
-    let reveresed_boundary_polygon
+// accepting: land cordinates in log, lat format
+// returns: land cordinates in lat, log
+const format_cords = (land)=>{
+    let formated_land = land.map((cords)=>{
+        return [cords[1],cords[0]]
+    })
+    return formated_land
+}
+
+// returns land cordinates in the lat,log format
+export const get_formated_land_list = (cadastre_list)=> {
     
+    // fetch poligons
+    let land_details = Array.isArray(cadastre_list)
+    ? cadastre_list.map((land) => {
+        // Access the array of coordinates (assuming it's the 'coordinates' property)
+        let poly_coordinates = wellknown.parse(land.boundary_polygon).coordinates;
+        let location_coordinate = wellknown.parse(land.location_coordinate).coordinates;
+        
+        return {
+            "id":land["id"],
+            "boundary_polygon" : format_cords(poly_coordinates[0]),
+            "location_coordinate" : [location_coordinate[1],location_coordinate[0]],
+            "land_type" : land["land_type"],
+            "area" : land["area"],
+            "land" : land["land"]
+        };
+      })
+    : [];
+    return land_details
+    
+}
+  
+
+
+// returns land cordinates in the lat,log format
+export const get_reversed_points = (cadastre_list)=>{
+
     // fetch positional cordinates
+    let points = []
     const cordinates = Array.isArray(cadastre_list)
     ? cadastre_list.map((i) => {
         // Access the array of coordinates (assuming it's the 'coordinates' property)
-        const coordinates = wellknown.parse(i.location_coordinate).coordinates;
-        return [coordinates[1],coordinates[0]];
+        points = wellknown.parse(i.location_coordinate).coordinates;
+        return [points[1],points[0]];
       })
     : [];
-    
-    // fetch poligons
-    const boundary_polygon = Array.isArray(cadastre_list)
-    ? cadastre_list.map((i) => {
-        // Access the array of coordinates (assuming it's the 'coordinates' property)
-        const poly_coordinates = wellknown.parse(i.boundary_polygon).coordinates;
-        return poly_coordinates[0];
-      })
-    : [];
-
-    //reverse polygon from log, lat to lat, log
-    reveresed_boundary_polygon = boundary_polygon.map((bounds)=>{
-      return bounds.map((cords)=>{
-        return [cords[1],cords[0]]
-      })
-    })
-    return reveresed_boundary_polygon
+    return points
 }
-  
