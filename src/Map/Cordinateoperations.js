@@ -41,13 +41,12 @@ export const get_formated_land_list = (cadastre_list)=> {
 export const get_reversed_points = (cadastre_list)=>{
 
     // fetch positional cordinates
-    let points = []
     const cordinates = Array.isArray(cadastre_list)
     ? cadastre_list.map((i) => {
         // Access the array of coordinates (assuming it's the 'coordinates' property)
-        points = wellknown.parse(i.location_coordinate).coordinates;
+        const points = wellknown.parse(i.location_coordinate).coordinates;
         return [points[1],points[0]];
       })
     : [];
-    return points
+    return cordinates
 }

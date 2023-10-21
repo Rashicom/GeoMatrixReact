@@ -10,9 +10,10 @@ import {setCadastre,setError,setLoading} from '../../../redux/Cadastre/Cadastres
 import User from '../../../redux/Normaluser/User'
 import wellknown from 'wellknown';
 import { get_formated_land_list, get_reversed_points } from '../../../Map/Cordinateoperations'
+import { useState } from 'react'
 
 function Land() {
-
+  
   const dispatch = useDispatch()
   // when the Land componet is called we have to make a api request to the server to fetch all the information
   useEffect( ()=> {
@@ -50,32 +51,28 @@ function Land() {
   // after api call full filled, desparch function rerender the componet
   // so check the cadasral_list is empty or not , then pass data to the map
   let land_list = []
+  let centre = [9.9,76.3]
+
   if (cadastre_list) {
     // this method accept cadastre list and return formated land list which is in lat, log formated
-    
     land_list = get_formated_land_list(cadastre_list)
+    let land_points = get_reversed_points(cadastre_list)
+    centre = land_points[0]
+    
   }
+  // centere position of the map, just take first positon cordinate from the point list
   
 
-  // centere position of the map
-  const position = [9.939093, 76.270523]
-  const test_poly = [
-    [9.96671265,76.23393904],
-    [9.98117685,76.27856238],
-    [9.84151494,76.34521496],
-    [9.80589445,76.26387622],
-    [9.96671265,76.23393904]
-  ]
   
   return (
     <>
         <h3>Land Map</h3>
-        <MapContainer center={position} zoom={13} >
+        <MapContainer center={centre} zoom={13} >
           <TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution} />
           
           {
             land_list.map((land,index)=>(
-              <Polygon pathOptions={{ color: 'red' }} positions={land["boundary_polygon"]} >
+              <Polygon key={index} pathOptions={{ color: 'red' }} positions={land["boundary_polygon"]} >
                 
                 <Tooltip sticky>  
                   {/* card to show land information when mouse hover on the land */}
