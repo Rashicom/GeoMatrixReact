@@ -76,10 +76,10 @@ function Land() {
           {
             land_list.map((land,index)=>(
               <Polygon pathOptions={{ color: 'red' }} positions={land["boundary_polygon"]} >
+                
                 <Tooltip sticky>  
-
                   {/* card to show land information when mouse hover on the land */}
-                  <Card bg={'Primary'} style={{ width: '17rem' }} className="">
+                  <Card style={{ width: '17rem' }} className="">
                     <Card.Body>
                       <Card.Title><p>Land type : {land["land_type"]}</p></Card.Title>
                       <Card.Text>
@@ -88,15 +88,29 @@ function Land() {
                       </Card.Text>
                     </Card.Body>
                   </Card>
-                  
                 </Tooltip>
+
+                <Popup className='m-o'>
+                  <Card style={{ width: '18rem' }}>
+                    <Card.Header>Land Number : {land["id"]}</Card.Header>
+                    <Card.Body>
+                      <Card.Title>Land type : {land["land_type"]}</Card.Title>
+                      <Card.Text>
+                        <p className='m-1'>Area     : {land["area"]}</p>
+                        <p className='m-1'>Locality : {land["land"]["locality"]}</p>
+                        <p className='m-1'>District : {land["land"]["district"]}</p>
+                        <p className='m-1'>State    : {land["land"]["state"]}</p>
+                        <p className='m-1'>Zip code : {land["land"]["zip_code"]}</p>
+                        <p className='m-1'>Registered from : {land["land"]["active_from"]}</p>
+
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Popup>
+              
               </Polygon>
             ))
           }
-          {/* <Polygon pathOptions={{ color: 'red' }} positions={test_poly} >
-            <Tooltip sticky>hello there</Tooltip>
-          </Polygon> */}
-          
         </MapContainer>
         
     </>
