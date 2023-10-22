@@ -5,10 +5,6 @@ import { cadastreURL } from "../Constants";
 // import initialized api from interceptor
 
 
-const cadastreInstance = axios.create({
-    baseURL:cadastreURL,   
-})
-
 // fetch users cadastre list
 export const fetchcadastreList = async ()=> {
     try {

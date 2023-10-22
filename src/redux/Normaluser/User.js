@@ -3,6 +3,7 @@ import { loginUser } from "../../Api/users/Users";
 
 const INITIAL_STATE = {
     user:null,
+    userinfo:null,
     loading:null,
     error:null
 }
@@ -16,6 +17,10 @@ const userSlice = createSlice({
         
         setUser: (state,action) => {
             state.user = action.payload
+        },
+
+        setUserifo: (state,action) => {
+            state.userinfo = action.payload
         },
 
         setLoading: (state,action) => {
@@ -36,6 +41,6 @@ const userSlice = createSlice({
 })
 
 
-export const {setUser, setLoading, setError, logout} = userSlice.actions;
+export const {setUser, setLoading, setError, logout, setUserifo} = userSlice.actions;
  
 export default userSlice.reducer;

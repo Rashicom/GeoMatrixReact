@@ -1,4 +1,5 @@
 import axios, { Axios } from "axios";
+import { useraxiosInstance } from "../../Interceptors/request";
 import { userURL } from "../Constants";
 
 
@@ -18,6 +19,17 @@ export const loginUser = async (credencials)=> {
     }
     catch(error) {
         throw error.response
+    }
+}
+
+// fetch already signed in user
+export const fetchuserInfo = async () => {
+    try{
+        const response = await useraxiosInstance.get('/get_user/')
+        return response.data
+    }
+    catch (error) {
+        throw error
     }
 }
 

@@ -12,6 +12,7 @@ function Userprofilesidebar() {
           <ListGroup.Item className='list_item' as={Link} to="tax/">Tax</ListGroup.Item>
           <ListGroup.Item className='list_item' as={Link} to="accounts/">Accounts</ListGroup.Item>
           <ListGroup.Item className='list_item' as={Link} to="notifications/">Notifications</ListGroup.Item>
+          <ListGroup.Item className='list_item' as={Link} to="notifications/">Alerts</ListGroup.Item>
           <ListGroup.Item className='list_item' as={Link} to="dashboard/">Settings</ListGroup.Item>
         </ListGroup>
 

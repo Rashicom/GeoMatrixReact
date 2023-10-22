@@ -31,7 +31,7 @@ useraxiosInstance.interceptors.request.use(
         // modify request configuraion here
         
         // fetching access tocken from the redux
-        const accessToken = useSelector((state) => state);
+        const accessToken = localStorage.getItem('accessToken')
         if (accessToken) {
             config.headers['Authorization'] = `Bearer ${accessToken}`;
         }
@@ -50,9 +50,7 @@ cadastreaxiosInstance.interceptors.request.use(
         // modify request configuraion here
         
         // fetching access tocken from the redux
-        console.log("pre call")
         const accessToken = localStorage.getItem('accessToken')
-        console.log("post call")
         if (accessToken) {
             config.headers['Authorization'] = `Bearer ${accessToken}`;
         }
