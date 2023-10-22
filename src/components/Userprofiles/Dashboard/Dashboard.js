@@ -6,13 +6,14 @@ import Image from 'react-bootstrap/Image';
 import Alert from 'react-bootstrap/Alert';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { fetchuserInfo } from '../../../Api/users/Users';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserifo } from '../../../redux/Normaluser/User';
 import { Container } from 'react-bootstrap';
 
 function Dashboard() {
   
   const dispatch = useDispatch()
+  const userdata = useSelector((state) => state.user.userinfo)
 
   useEffect( ()=> {
     console.log("call user info fetch api here")
@@ -29,9 +30,15 @@ function Dashboard() {
         console.log(error)
       }
     }
-    //call the method
-    fetch_user_info()
 
+    //call api to collect user info if no user data found
+    // if user data is in redux use it, else call api and update data
+    if (!userdata) {
+      console.log("No user info, procede to call api to coolect user info")
+      fetch_user_info() 
+    }
+    console.log(typeof userdata)
+    
   },[])
 
   return (
@@ -48,26 +55,25 @@ function Dashboard() {
                 </Card.Header>
                 <Card.Body>
                   <Card.Title>
-                    Rashid
+                    {userdata ? userdata.first_name : "Name.."}
                   </Card.Title>
                   <Card.Text>
-                    <p>email id</p>
-                    <p>social rank</p>
+                    <p>{userdata ? userdata.email : "Email.."}</p>
+                    <p>{userdata ? userdata.social_rank : "Social rank.."}</p>
                   </Card.Text>
                 </Card.Body>
               </Card>
-              
             </Col>
 
             <Col md={8} className=''>
             <Card>
               <ListGroup variant="flush">
-                <ListGroup.Item>User unique ID :</ListGroup.Item>
-                <ListGroup.Item>Name :</ListGroup.Item>
-                <ListGroup.Item>Email :</ListGroup.Item>
-                <ListGroup.Item>Contact Number :</ListGroup.Item>
-                <ListGroup.Item>Adhar ID :</ListGroup.Item>
-                <ListGroup.Item>Social Rank :</ListGroup.Item>
+                <ListGroup.Item>User unique ID :{userdata ? userdata.id : "id.."}</ListGroup.Item>
+                <ListGroup.Item>Name :{userdata ? userdata.first_name : "Name.."}</ListGroup.Item>
+                <ListGroup.Item>Email :{userdata ? userdata.email : "Email.."}</ListGroup.Item>
+                <ListGroup.Item>Contact Number :{userdata ? userdata.contact_number : "Number.."}</ListGroup.Item>
+                <ListGroup.Item>Adhar ID :{userdata ? userdata.adhar_id : "Adhar id.."}</ListGroup.Item>
+                <ListGroup.Item>Social Rank :{userdata ? userdata.social_rank : "Social rank.."}</ListGroup.Item>
 
               </ListGroup>
             </Card>
