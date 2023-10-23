@@ -17,3 +17,15 @@ export const fetchcadastreList = async ()=> {
 }
 
 
+// fetch users tax invoice details
+export const fetchInvoice = async (queryParams)=> {
+    try{
+        const responce = await cadastreaxiosInstance.get('/get_user_invoices/',{params:queryParams})
+        return responce.data
+    }
+    catch (error) {
+        throw error.response
+    }
+}
+
+

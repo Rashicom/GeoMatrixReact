@@ -4,6 +4,7 @@ import { loginUser } from "../../Api/users/Users";
 const INITIAL_STATE = {
     user:null,
     userinfo:null,
+    userinvoice:null,
     loading:null,
     error:null
 }
@@ -21,6 +22,9 @@ const userSlice = createSlice({
 
         setUserifo: (state,action) => {
             state.userinfo = action.payload
+        },
+        setUserinvoice: (state,action) => {
+            state.userinvoice = action.payload
         },
 
         setLoading: (state,action) => {
@@ -41,6 +45,6 @@ const userSlice = createSlice({
 })
 
 
-export const {setUser, setLoading, setError, logout, setUserifo} = userSlice.actions;
+export const {setUser, setLoading, setError, logout, setUserifo, setUserinvoice} = userSlice.actions;
  
 export default userSlice.reducer;
