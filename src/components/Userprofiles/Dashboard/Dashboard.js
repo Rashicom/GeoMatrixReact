@@ -37,7 +37,6 @@ function Dashboard() {
       console.log("No user info, procede to call api to coolect user info")
       fetch_user_info() 
     }
-    console.log(typeof userdata)
     
   },[])
 

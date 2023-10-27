@@ -19,10 +19,11 @@ const userSlice = createSlice({
         setUser: (state,action) => {
             state.user = action.payload
         },
-
+        
         setUserifo: (state,action) => {
             state.userinfo = action.payload
         },
+
         setUserinvoice: (state,action) => {
             state.userinvoice = action.payload
         },

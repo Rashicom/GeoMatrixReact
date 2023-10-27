@@ -11,6 +11,7 @@ import Land from '../components/Userprofiles/Land/Land';
 import Tax from '../components/Userprofiles/Tax/Tax';
 import Notifications from '../components/Userprofiles/Notifications/Notifications';
 import Accounts from '../components/Userprofiles/Accounts/Accounts';
+import Taxpayment from '../components/Userprofiles/Taxpayment/Taxpayment';
 
 
 function Userprofilepage() {
@@ -30,6 +31,7 @@ function Userprofilepage() {
               <Route path='/tax/' element={<Tax />} />
               <Route path='/notifications/' element={<Notifications />} />
               <Route path='/accounts/' element={<Accounts />} />
+              <Route path='tax/taxpayment/:tax_invoice_id' element={<Taxpayment />} />
             </Routes>
             
           </Col>
