@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     user:null,
     userinfo:null,
     userinvoice:null,
+    userwalletbalance:null,
     loading:null,
     error:null
 }
@@ -28,6 +29,10 @@ const userSlice = createSlice({
             state.userinvoice = action.payload
         },
 
+        setUserWallet: (state,action) => {
+            state.userwalletbalance = action.payload
+        },
+
         setLoading: (state,action) => {
             state.loading = action.payload
         },
@@ -46,6 +51,6 @@ const userSlice = createSlice({
 })
 
 
-export const {setUser, setLoading, setError, logout, setUserifo, setUserinvoice} = userSlice.actions;
+export const {setUser, setLoading, setError, logout, setUserifo, setUserinvoice, setUserWallet} = userSlice.actions;
  
 export default userSlice.reducer;

@@ -23,16 +23,18 @@ function Tax() {
         const queryParams = {active_invoice:'True'}
         const response = await fetchInvoice(queryParams)
         dispatch(setUserinvoice(response))
+        console.log("goooo",userinvoice)
+        
       }
       catch (error) {
         console.log("tax invoice api failed")
+
       }
     }
 
     // only call api to collect if the same data isnt in the redux
     if (!userinvoice) {
-      fetch_invoice()
-      
+      fetch_invoice() 
     }
 
   },[])

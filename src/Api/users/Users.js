@@ -34,6 +34,18 @@ export const fetchuserInfo = async () => {
 }
 
 
+// fetch authenticated users wallet balance
+export const fetchuserWalletbalance = async () => {
+    try{
+        const response = await useraxiosInstance.get('/get_wallet_balance/')
+        return response.data
+    }
+    catch (error) {
+        throw error
+    }
+}
+
+
 // gov user login
 export const loginGovuser = async (credencials)=> {
     try{

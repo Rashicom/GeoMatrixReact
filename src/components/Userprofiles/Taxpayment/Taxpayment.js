@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchInvoice } from '../../../Api/cadastre/Fetchcadastre'
 import Container from 'react-bootstrap/Container';
@@ -10,8 +10,16 @@ import Table from 'react-bootstrap/Table';
 import { BsWallet } from "react-icons/bs";
 import { FaGooglePay } from "react-icons/fa";
 import Button from 'react-bootstrap/Button';
+import { fetchuserWalletbalance } from '../../../Api/users/Users';
+import { setUserWallet } from '../../../redux/Normaluser/User';
 
 function Taxpayment() {
+
+    //dispatch
+    const dispatch = useDispatch()
+
+    //selector
+    const walletbalance = useSelector((state)=>state.user.userwalletbalance)
 
     //fetch invoice id
     const {tax_invoice_id} = useParams()
@@ -24,6 +32,30 @@ function Taxpayment() {
 
     // faind total payed amount
     const payed_amount = tax_invoice.payment_history.reduce((accumulator, current)=> {return accumulator + current.payed_amount},0)
+
+    // use effect for call api to fetch users wallet details
+    useEffect( ()=> {
+      console.log("fetch users wallet details")
+      
+      // call API
+      const fetch_wallet_balance = async()=> {
+        try{
+          const response = await fetchuserWalletbalance()
+          dispatch(setUserWallet(response))
+        }
+
+        catch (error) {
+          console.log(error)
+        }
+      }
+
+      if (!walletbalance) {
+        fetch_wallet_balance()
+        
+      }
+      
+    },[])
+    
 
   return (
     <>
@@ -102,14 +134,14 @@ function Taxpayment() {
                       </Col>
                       <Col sm={8}>
                         <p className='m-0 text-success'>My wallet</p>
-                        <p className='m-0 text-success'>Balance : 0.00</p>
+                        <p className='m-0 text-success'>Balance : {walletbalance ? walletbalance.balance : 0.00}</p>
 
                       </Col>
                     </Row>
                             
                   </Card.Text>
                 </Card.Body>
-                <Button variant="success" className='m-3'>Deduct and  Pay</Button>
+                <Button variant="success" className='m-3'> Deduct and  Pay</Button>
               </Card>
 
 
