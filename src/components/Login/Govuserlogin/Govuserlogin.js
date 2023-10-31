@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGovuser,setLoading,logout,setError } from '../../../redux/govuser/govuser';
 import { loginGovuser } from '../../../Api/users/Users';
@@ -18,7 +18,8 @@ function Govuserlogin() {
 
     const govuser = useSelector((state)=>state.govuser)
     const dispatch = useDispatch()
-   
+    const navigate = useNavigate()
+
     const govloginHandler = async (event)=>{
         /*
         this handle the signup . 
@@ -47,7 +48,17 @@ function Govuserlogin() {
                 const response = await loginGovuser(creadencials)
                 dispatch(setGovuser(response))
                 dispatch(setLoading(false))
+                
+                // set access and refresh tocken in the local storage
+                let accessToken = response.access
+                let refreshToken = response.access
+                localStorage.setItem('accessToken',accessToken)
+                localStorage.setItem('refreshToken',refreshToken)
+
+                // after successfull login redirect to the gov user dashbord
+                navigate('/govprofile/dashboard/')
             }
+            
             catch (error) {
                 dispatch(setLoading(false))
                 dispatch(setError(error.data.details))

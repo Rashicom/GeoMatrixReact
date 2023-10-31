@@ -8,6 +8,9 @@ import Datalabpage from "./pages/Datalabpage";
 import Signuppage from "./pages/Signuppage";
 import { Provider } from 'react-redux';
 import Userprofilepage from './pages/Userprofilepage';
+import Govprofilepage from './Govpages/Govprofilepage';
+
+
 
 function App() {
  
@@ -23,6 +26,9 @@ function App() {
             <Route path='/datalab/*' element={<Datalabpage />} />
             <Route path='/signup/*' element={<Signuppage />} />
             <Route path='/userprofile/*' element={<Userprofilepage />} />
+                 
+
+            <Route path='/govprofile/*' element={<Govprofilepage />} />
             
           </Routes>
           

@@ -8,7 +8,6 @@ const userapiInstance = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    
 })
 
 // normal user login
