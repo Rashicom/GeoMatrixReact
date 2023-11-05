@@ -13,6 +13,10 @@ import Indemnitysidebar from '../components/Govprofilesidebar/Indemnitysidebar';
 import Blogsidebar from '../components/Govprofilesidebar/Blogsidebar'
 import Dashboardsidebar from '../components/Govprofilesidebar/Dashboardsidebar'
 
+import Dashboard from '../components/Govprofiles/Dashboard/Dashboard/Dashboard'
+import Notifications from '../components/Govprofiles/Dashboard/Notifications/Notifications'
+
+
 import Basemap from '../components/Govprofiles/Maps/Basemap/Basemap'
 import Addcadastre from '../components/Govprofiles/Maps/Addcadastre/Addcadastre'
 import Changeownership from '../components/Govprofiles/Maps/Changeownership/Changeownership'
@@ -36,7 +40,7 @@ function Govprofilepage() {
         <Col md={3}>
 
           <Routes>
-            
+
             <Route path='/dashboard/*' element={<Dashboardsidebar />} />
             <Route path='/maps/*' element={<Mapsidebar />} />
             <Route path='/land-tax/*' element={<Landtaxsidebar />} />
@@ -53,8 +57,10 @@ function Govprofilepage() {
           <Routes>
 
             {/* gov user dashboard */}
-
-
+            <Route path='/dashboard/' element={<Dashboard />} />
+            <Route path='/dashboard/notifications' element={<Notifications />} />
+            
+            
             {/* maps */}
             <Route path='/maps/base-map/' element={<Basemap />} />
             <Route path='/maps/add-cadastre/' element={<Addcadastre />} />

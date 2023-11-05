@@ -10,7 +10,7 @@ function Dashboardsidebar() {
     <>
         <ListGroup as="ul" className='py-3'>
           <ListGroup.Item className='indemnity-calculator' as={Link} to="" >Dashboard</ListGroup.Item>
-          <ListGroup.Item className='list_item' as={Link} to="" >Notifications</ListGroup.Item>
+          <ListGroup.Item className='list_item' as={Link} to="notifications" >Notifications</ListGroup.Item>
         </ListGroup>
     </>
 
