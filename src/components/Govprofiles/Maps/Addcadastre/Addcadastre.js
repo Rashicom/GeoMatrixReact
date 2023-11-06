@@ -6,8 +6,48 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import CloseButton from 'react-bootstrap/CloseButton';
+import { useState } from 'react';
 
 function Addcadastre() {
+
+
+  // form values state
+  const [email, setEmail] = useState("")
+  const [locality, setLocality] = useState("")
+  const [district, setDistrict] = useState("")
+  const [state, setState] = useState("")
+  const [zipcode, setZipcode] = useState("")
+  const [landtype, setLandtype] = useState("")
+  
+  const [longitude, setLongitude] = useState("")
+  const [latitude, setLatitude] = useState("")
+  
+  const [polygons, setPolygon] = useState([])
+
+  const deleteCordinate = (indx)=> { 
+    // copy all poligon to a list and delete insx matching record
+    // then append new updated array to the polygon
+    console.log(indx)
+    const updatedPolygons = [...polygons]
+    
+    updatedPolygons.splice(indx,1)
+    setPolygon(updatedPolygons)
+  }
+
+  const registerCadastre = ()=> {
+    
+    console.log("new land registration")
+    console.log(email)
+    console.log(locality)
+    console.log(district)
+    console.log(state)
+    console.log(zipcode)
+    console.log(landtype)
+    console.log(polygons)
+
+
+  }
+  
   return (
     <> 
       
@@ -25,7 +65,7 @@ function Addcadastre() {
 
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control type="email" onChange={(e)=>setEmail(e.target.value)} placeholder="Enter email" />
                 </Form.Group>
                 
               </Row>  
@@ -51,12 +91,12 @@ function Addcadastre() {
 
                   <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>Locality</Form.Label>
-                    <Form.Control />
+                    <Form.Control onChange={(e)=>setLocality(e.target.value)} />
                     </Form.Group>
 
                   <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>District</Form.Label>
-                    <Form.Control />
+                    <Form.Control onChange={(e)=>setDistrict(e.target.value)} />
                   </Form.Group>
 
                 </Row>
@@ -65,19 +105,19 @@ function Addcadastre() {
                   
                   <Form.Group as={Col} controlId="formGridCity">
                     <Form.Label>State</Form.Label>
-                    <Form.Control />
+                    <Form.Control onChange={(e)=>setState(e.target.value)} />
                     </Form.Group>
 
                   <Form.Group as={Col} controlId="formGridZip">
                     <Form.Label>Zip cope</Form.Label>
-                    <Form.Control />
+                    <Form.Control onChange={(e)=>setZipcode(e.target.value)} />
                   </Form.Group>
 
                 </Row>
 
                 <Form.Group as={Col} controlId="formGridState">
                     <Form.Label>Land type</Form.Label>
-                    <Form.Select defaultValue="Choose...">
+                    <Form.Select onChange={(e)=>setLandtype(e.target.value)} defaultValue="Choose...">
                       <option>RESIDENTIAL</option>
                       <option>AGRICULTURAL</option>
                       <option>COMMERCIAL</option>
@@ -119,19 +159,31 @@ function Addcadastre() {
 
                   <Form.Group as={Col} controlId="formGridNumbers">
                     
-                    <Form.Control placeholder="Longitude" />
+                    <Form.Control value={longitude || ''} onChange={(e)=> setLongitude(e.target.value)} placeholder="Longitude" />
 
                   </Form.Group>
 
                   <Form.Group as={Col} controlId="formGridNumbers">
                     
-                    <Form.Control placeholder="Latitude" />
+                    <Form.Control value={latitude || ''} onChange={(e)=> setLatitude(e.target.value)} placeholder="Latitude" />
                     
                   </Form.Group>
 
                   <Form.Group as={Col} controlId="formGridNumbers">
                     
-                    <Button variant="success">Add Cordinate</Button>{' '}
+                    <Button type='button' onClick={()=>{
+                      
+                      //collect latitude and longitude and add to polygon list
+                      if (latitude !== null && longitude !== null) {
+
+                        setPolygon([...polygons,[longitude,latitude]])
+                        setLatitude(null)
+                        setLongitude(null)
+
+                      }
+                      
+                    }} 
+                    >Add Cordinate</Button>
                     
                   </Form.Group>
 
@@ -144,29 +196,31 @@ function Addcadastre() {
                 
                   <tbody>
 
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td><CloseButton /></td>
+                    {
+                      polygons.map((cordinate,indx)=> {
+                        return(
 
-                    </tr>
+                          // iterate through polygon which is user entered
+                          <tr key={indx}>
 
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td><CloseButton /></td>
+                            <td>{indx}</td>
+                            <td>{cordinate[0]}</td>
+                            <td>{cordinate[1]}</td>
 
-                    </tr>
+                            {/* 
+                              if user clicked closed button of a perticular cordinate close button
+                              delete record  
+                            */}
+                            <td><CloseButton onClick={()=> {
+                              
+                              deleteCordinate(indx)
+                            }} /></td>
 
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td><CloseButton /></td>
-
-                    </tr>
+                          </tr>
+                        )
+                      })
+                    }
+                    
                     
                   </tbody>
                 </Table>
@@ -190,7 +244,7 @@ function Addcadastre() {
               
               <Row className="mb-3">
 
-                <Button variant="success">Submit</Button>{' '}
+                <Button variant="success" onClick={()=>registerCadastre()} >Submit</Button>
               
               </Row>  
             </Form>
