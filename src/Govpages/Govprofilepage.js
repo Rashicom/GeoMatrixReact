@@ -25,6 +25,7 @@ import Splitcadastre from '../components/Govprofiles/Maps/Splitcadastre/Splitcad
 import Taxmap from '../components/Govprofiles/Tax/Taxmap/Taxmap'
 import Updatelandtax from '../components/Govprofiles/Tax/Updatelandtax/Updatelandtax'
 import Generatetax from '../components/Govprofiles/Tax/Generatetax/Generatetax'
+import Addbulkcadastre from '../components/Govprofiles/Maps/Addbulkcadastre/Addbulkcadastre';
 
 
 function Govprofilepage() {
@@ -64,9 +65,11 @@ function Govprofilepage() {
             {/* maps */}
             <Route path='/maps/base-map/' element={<Basemap />} />
             <Route path='/maps/add-cadastre/' element={<Addcadastre />} />
+            <Route path='/maps/add-bulkcadastre/' element={<Addbulkcadastre />} />
             <Route path='/maps/change-ownership/' element={<Changeownership  />} />
             <Route path='/maps/split-cadastre/' element={<Splitcadastre />} />
 
+            
 
             {/* land tax */}
             <Route path='/land-tax/tax-map' element={<Taxmap />} />
