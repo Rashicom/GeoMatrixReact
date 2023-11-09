@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -7,7 +7,22 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 
 
+
 function Splitcadastre() {
+
+  const [owner_email, setOwner_email] = useState(null)
+  const [land_id, setLand_id] = useState(null)
+  const [land_file, setLand_file] = useState(null)
+
+  const submit_split_cadastre = ()=> {
+    console.log("splic cadastre")
+    console.log(owner_email)
+    console.log(land_id)
+    console.log(land_file)
+
+  }
+  
+
   return (
     
     <>
@@ -26,13 +41,14 @@ function Splitcadastre() {
 
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control type="email" onChange={(e)=>setOwner_email(e.target.value)} placeholder="Enter email" />
                 </Form.Group>
 
               </Row>
             </Form>
           </Card.Body>
         </Card>
+
       </div>
 
 
@@ -50,7 +66,7 @@ function Splitcadastre() {
     
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Land ID</Form.Label>
-                  <Form.Control type="text" placeholder="Enter Land id" />
+                  <Form.Control type="text" onChange={(e)=>setLand_id(e.target.value)} placeholder="Enter Land id" />
                 </Form.Group>
     
               </Row>
@@ -75,7 +91,7 @@ function Splitcadastre() {
 
                 <Form.Group controlId="formFile" className="mb-3">
                   <Form.Label>Choose landfile in a prefered format</Form.Label>
-                  <Form.Control type="file" />
+                  <Form.Control type="file" onChange={(e)=>setLand_file(e.target.files[0])} accept='.xls' />
                 </Form.Group>
 
               </Row>  
@@ -101,7 +117,7 @@ function Splitcadastre() {
 
             <Row className="mb-3">
 
-              <Button variant="success" >Submit</Button>
+              <Button variant="success" onClick={()=>submit_split_cadastre()} >Submit</Button>
 
             </Row>  
           </Form>
