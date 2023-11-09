@@ -5,6 +5,10 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { bulkadd_cadastre } from '../../../../Api/cadastre/createcadastre';
+import { setCadastre } from '../../../../redux/Cadastre/Cadastreslice';
 
 
 function Addbulkcadastre() {
@@ -12,10 +16,35 @@ function Addbulkcadastre() {
   const [owner_email, setOwner_email] = useState(null)
   const [land_file, setLand_file] = useState(null)
 
-  const submit_bulk_land_creation = ()=> {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const submit_bulk_land_creation = async ()=> {
     console.log("bulk creation")
     console.log(owner_email)
     console.log(land_file)
+
+    //make a form to inclued the file
+    const formData = new FormData()
+    formData.append('email', owner_email)
+    formData.append('landfile', land_file)
+
+    // call api for bulk creation
+    try{
+      const response = await bulkadd_cadastre(formData)
+      console.log(response)
+
+      // delete present cadastre, then the reloading the map page, forced to call api because of the cadastre not found
+      // change to best practice is : add the single cadastre response to the remaning cadastre list
+      // present response is not a well formated to add
+      dispatch(setCadastre(null))
+      navigate("/govprofile/maps/base-map/")
+
+    }
+    catch(error) {
+      console.log(error)
+    }
+
 
   }
   

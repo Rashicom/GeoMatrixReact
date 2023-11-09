@@ -7,6 +7,10 @@ import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import CloseButton from 'react-bootstrap/CloseButton';
 import { useState } from 'react';
+import { add_cadastre } from '../../../../Api/cadastre/createcadastre';
+import { json, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCadastre } from '../../../../redux/Cadastre/Cadastreslice';
 
 function Addcadastre() {
 
@@ -24,29 +28,50 @@ function Addcadastre() {
   
   const [polygons, setPolygon] = useState([])
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const deleteCordinate = (indx)=> { 
     // copy all poligon to a list and delete insx matching record
     // then append new updated array to the polygon
-    console.log(indx)
     const updatedPolygons = [...polygons]
     
     updatedPolygons.splice(indx,1)
     setPolygon(updatedPolygons)
   }
 
-  const registerCadastre = ()=> {
+  const registerCadastre = async ()=> {
     
-    console.log("new land registration")
-    console.log(email)
-    console.log(locality)
-    console.log(district)
-    console.log(state)
-    console.log(zipcode)
-    console.log(landtype)
-    console.log(polygons)
+    //data to call api
+    var data = {
+      "email":email,
+      "locality":locality,
+      "district":district,
+      "state":state,
+      "zip_code":zipcode,
+      "boundary_polygon":polygons,
+      "land_type":landtype
+    }
 
+    console.log(data)
+
+    try{
+      const response = await add_cadastre(data)
+      console.log(response)
+
+      // delete present cadastre, then the reloading the map page, forced to call api because of the cadastre not found
+      // change to best practice is : add the single cadastre response to the remaning cadastre list
+      // present response is not a well formated to add
+      dispatch(setCadastre(null))
+      navigate("/govprofile/maps/base-map/")
+      
+    }
+    catch(error) {
+      console.log(error)
+    }
 
   }
+
   
   return (
     <> 
@@ -176,7 +201,7 @@ function Addcadastre() {
                       //collect latitude and longitude and add to polygon list
                       if (latitude !== null && longitude !== null) {
 
-                        setPolygon([...polygons,[longitude,latitude]])
+                        setPolygon([...polygons,[parseFloat(longitude),parseFloat(latitude)]])
                         setLatitude(null)
                         setLongitude(null)
 

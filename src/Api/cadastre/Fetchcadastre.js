@@ -22,21 +22,22 @@ export const fetch_govcadastreList = async () => {
         const responce = await cadastreaxiosInstance.get('/get_land/')
         return responce.data
     }
-    catch (error) {
+    catch (error) {                                                                                                                                                                                                                         
         throw error
     }
 }
 
 
-// fetch users tax invoice details
+// fetch users tax invoice details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 export const fetchInvoice = async (queryParams)=> {
     try{
         const responce = await cadastreaxiosInstance.get('/get_user_invoices/',{params:queryParams})
-        return responce.data
+        return responce.data                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
     }
     catch (error) {
         throw error.response
     }
 }
+
 
 
