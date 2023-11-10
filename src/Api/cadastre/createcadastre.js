@@ -25,3 +25,5 @@ export const bulkadd_cadastre = async(data)=> {
         throw error
     }
 }
+
+
