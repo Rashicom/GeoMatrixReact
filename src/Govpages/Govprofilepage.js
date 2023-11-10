@@ -63,7 +63,7 @@ function Govprofilepage() {
             
             
             {/* maps */}
-            <Route path='/maps/base-map/' element={<Basemap />} />
+            <Route path='/maps/' element={<Basemap />} />
             <Route path='/maps/add-cadastre/' element={<Addcadastre />} />
             <Route path='/maps/add-bulkcadastre/' element={<Addbulkcadastre />} />
             <Route path='/maps/change-ownership/' element={<Changeownership  />} />
@@ -72,7 +72,7 @@ function Govprofilepage() {
             
 
             {/* land tax */}
-            <Route path='/land-tax/tax-map' element={<Taxmap />} />
+            <Route path='/land-tax/' element={<Taxmap />} />
             <Route path='/land-tax/update-land-tax/' element={<Updatelandtax />} />
             <Route path='/land-tax/generate-land-tax/' element={<Generatetax />} />
 

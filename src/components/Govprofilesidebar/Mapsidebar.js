@@ -9,7 +9,7 @@ function Mapsidebar() {
     <>
         <ListGroup as="ul" className='py-3'>
           
-          <ListGroup.Item className='list_item' as={Link} to="base-map" >Base map</ListGroup.Item>
+          <ListGroup.Item className='list_item' as={Link} to="" >Base map</ListGroup.Item>
           <ListGroup.Item className='list_item' as={Link} to="add-cadastre" >Add cadastre</ListGroup.Item>
           <ListGroup.Item className='list_item' as={Link} to="add-bulkcadastre" >Bulk Cadastre creation</ListGroup.Item>
           <ListGroup.Item className='list_item' as={Link} to="change-ownership" >Change ownership</ListGroup.Item>

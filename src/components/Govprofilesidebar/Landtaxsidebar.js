@@ -10,7 +10,7 @@ function Landtaxsidebar() {
     <>
         <ListGroup as="ul" className='py-3'>
 
-          <ListGroup.Item className='list_item' as={Link} to="tax-map" >Tax map</ListGroup.Item>
+          <ListGroup.Item className='list_item' as={Link} to="" >Tax map</ListGroup.Item>
           <ListGroup.Item className='list_item' as={Link} to="" >Tax details</ListGroup.Item>
           <ListGroup.Item className='list_item' as={Link} to="tax-filter" >Tax filter</ListGroup.Item>
           <ListGroup.Item className='list_item' as={Link} to="generate-land-tax" >Generate Tax</ListGroup.Item>

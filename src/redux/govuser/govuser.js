@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const INITIAL_STATE = {
     loading:null,
-    error:null
+    error:null,
+    taxlist:null
 }
 
 
@@ -13,6 +14,10 @@ const govuserSlice = createSlice({
 
         setGovuser: (state,action) =>{
             state.govuser = action.payload
+        },
+
+        setTaxlist: (state,action) =>{
+            state.taxlist = action.payload
         },
 
         setLoading: (state,action) =>{
@@ -34,5 +39,5 @@ const govuserSlice = createSlice({
     
 })
 
-export const {setGovuser, setLoading,setError,logout} = govuserSlice.actions
+export const {setGovuser, setLoading,setError,logout,setTaxlist} = govuserSlice.actions
 export default govuserSlice.reducer;
