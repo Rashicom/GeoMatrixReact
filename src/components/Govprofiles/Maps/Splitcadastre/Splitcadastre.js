@@ -5,7 +5,10 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
-
+import { split_cadastre } from '../../../../Api/cadastre/cadastreoperations';
+import { setCadastre } from '../../../../redux/Cadastre/Cadastreslice';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 
 function Splitcadastre() {
@@ -14,11 +17,31 @@ function Splitcadastre() {
   const [land_id, setLand_id] = useState(null)
   const [land_file, setLand_file] = useState(null)
 
-  const submit_split_cadastre = ()=> {
-    console.log("splic cadastre")
-    console.log(owner_email)
-    console.log(land_id)
-    console.log(land_file)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+
+  const submit_split_cadastre = async ()=> {
+    
+    const formData = new FormData()
+    formData.append('parent_user_email',owner_email)
+    formData.append('parent_land_number',land_id)
+    formData.append('land_record_file',land_file)
+
+    try{
+      const response = await split_cadastre(formData)
+      console.log(response)
+
+      // delete present cadastre, then the reloading the map page, forced to call api because of the cadastre not found
+      // change to best practice is : add the single cadastre response to the remaning cadastre list
+      // present response is not a well formated to add
+      dispatch(setCadastre(null))
+      navigate("/govprofile/maps/base-map/")
+    
+    }
+    catch(error) {
+      console.log(error)
+    }
 
   }
   

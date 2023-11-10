@@ -17,5 +17,18 @@ export const change_land_ownership = async(data)=> {
 }
 
 
+//split cadastre
+export const split_cadastre = async(data)=> {
+    try{
+        const response = await cadastreaxiosInstance.post('/land_split/',data)
+        return response.data
+    }
+
+    catch(error) {
+        throw error
+    }
+
+}
+
 
 

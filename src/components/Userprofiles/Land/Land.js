@@ -89,7 +89,7 @@ function Land() {
 
                 <Popup className='m-o'>
                   <Card style={{ width: '18rem' }}>
-                    <Card.Header>Land Number : {land["id"]}</Card.Header>
+                    <Card.Header>Land Number : {land["land"]["land_number"]}</Card.Header>
                     <Card.Body>
                       <Card.Title>Land type : {land["land_type"]}</Card.Title>
                       <Card.Text>
